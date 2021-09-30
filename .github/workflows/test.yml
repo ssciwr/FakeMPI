@@ -35,5 +35,5 @@ jobs:
 
     - name: run tests
       shell: bash
-      working-directory: ${{ "{{runner.workspace}}" }}/build
+      working-directory: ${{ runner.workspace }}/build
       run: ctest
