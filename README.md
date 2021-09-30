@@ -1,5 +1,7 @@
 # FakeMPI - A sequential MPI stub
 
+*I am still experimenting with this - try at your own risk*
+
 `FakeMPI` is a sequential MPI stub. It implements the MPI C interface with an implementation that is limited to work on one rank.
 
 ## What is this good for?
