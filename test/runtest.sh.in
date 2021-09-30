@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rm -rf ${CMAKE_CURRENT_BINARY_DIR}/build-mpi
+rm -rf ${CMAKE_CURRENT_BINARY_DIR}/install-mpi
+mkdir ${CMAKE_CURRENT_BINARY_DIR}/build-mpi
+cd ${CMAKE_CURRENT_BINARY_DIR}/build-mpi
+cmake -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/install-mpi ${CMAKE_SOURCE_DIR}
+cmake --build . --target mpi
+cmake --build . --target install
+
+rm -rf ${CMAKE_CURRENT_BINARY_DIR}/build-project
+mkdir ${CMAKE_CURRENT_BINARY_DIR}/build-project
+cd ${CMAKE_CURRENT_BINARY_DIR}/build-project
+cmake -DCMAKE_PREFIX_PATH=${CMAKE_CURRENT_BINARY_DIR}/install-mpi ${CMAKE_CURRENT_SOURCE_DIR}/project
+

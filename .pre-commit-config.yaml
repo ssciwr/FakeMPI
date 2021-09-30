@@ -1,0 +1,25 @@
+repos:
+  # Format C/C++ code with Clang-Format - automatically applying the changes
+  - repo: https://github.com/ssciwr/clang-format-precommit
+    rev: v12.0.1
+    hooks:
+      - id: clang-format
+        args:
+        - -i
+        - --style=Mozilla
+
+  # Add some general purpose useful hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      # Make sure that contained YAML files are well-formed
+      - id: check-yaml
+      # Trim trailing whitespace of all sorts
+      - id: trailing-whitespace
+
+  # CMake Formatting/Linting Utility
+  - repo: https://github.com/cheshirekow/cmake-format-precommit
+    rev: v0.6.13
+    hooks:
+      - id: cmake-format
+      - id: cmake-lint

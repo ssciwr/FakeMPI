@@ -1,0 +1,39 @@
+name: CI Testing
+
+on:
+  # We run CI on pushes to the main branch
+  push:
+    branches:
+      - main
+  # and on all pull requests to the main branch
+  pull_request:
+    branches:
+      - main
+  # as well as upon manual triggers through the 'Actions' tab of the Github UI
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Testing
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: make build directory
+      run: cmake -E make_directory ${{ runner.workspace }}/build
+
+    - name: configure cmake
+      shell: bash
+      working-directory: ${{ runner.workspace }}/build
+      run: cmake $GITHUB_WORKSPACE
+
+    - name: build
+      shell: bash
+      working-directory: ${{ runner.workspace }}/build
+      run: cmake --build .
+
+    - name: run tests
+      shell: bash
+      working-directory: ${{ "{{runner.workspace}}" }}/build
+      run: ctest
