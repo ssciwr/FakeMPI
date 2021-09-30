@@ -1,7 +1,7 @@
 The actual MPI implementation in these files
 
-include/mpi.h
-include/mpi.c
+- `include/mpi.h`
+- `include/mpi.c`
 
 is copyrighted by Sandia Corporation. Under the terms of Contract DE-AC04-94AL85000 with Sandia
 Corporation, the U.S. Government retains certain rights in this software. This software is distributed under
