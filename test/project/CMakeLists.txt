@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(TestDummy LANGUAGES C)
 
 find_package(
-  MPI
+  MPI 3.0
   COMPONENTS C
   REQUIRED)
 
