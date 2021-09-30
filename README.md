@@ -49,6 +49,7 @@ There are severe drawbacks and limitations to the approach:
 * If your library depends on other libraries that depend on MPI you need to compile these libraries with `FakeMPI` as well - potentially leading to *build from source creep*.
 * There is no performance guarantee whatsoever.
 * Globally installing `FakeMPI` might shadow your actual MPI for CMake - don't do it.
+* Only the C interface is provided.
 
 ## Features compared to other such implementations
 
@@ -57,6 +58,7 @@ Several implementations of this idea are floating around. In fact, many HPC libr
 * Stand-alone distribution that is independent of a library. This allows separation of concern in the sense that a user can compile a library with `FakeMPI` without the library being aware of the fact.
 * CMake integration: CMake-based libraries (assuming they follow certain CMake conventions) will pick up `FakeMPI` without changes to the code base.
 * `FakeMPI` is a *functional* fallback: It will not only make applications compile, but (hopefully) return correct results.
+* Some libraries use similar functionality in a sequential fallback mode with separate code branches. With `FakeMPI` the parallel library code is used, only it is turned into a sequential stub.
 
 ## Acknowledgments
 
