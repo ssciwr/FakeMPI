@@ -11,6 +11,6 @@ cmake --build . --target install
 rm -rf ${CMAKE_CURRENT_BINARY_DIR}/build-project
 mkdir ${CMAKE_CURRENT_BINARY_DIR}/build-project
 cd ${CMAKE_CURRENT_BINARY_DIR}/build-project
-cmake -DCMAKE_PREFIX_PATH=${CMAKE_CURRENT_BINARY_DIR}/install-mpi ${CMAKE_CURRENT_SOURCE_DIR}/project
+cmake -DCMAKE_PREFIX_PATH=${CMAKE_CURRENT_BINARY_DIR}/install-mpi -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON ${CMAKE_CURRENT_SOURCE_DIR}/project
 cmake --build .
 ./helloworld
