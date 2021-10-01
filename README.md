@@ -6,11 +6,12 @@
 
 ## What is this good for?
 
-There are several use cases for this type of library. Here are some:
+There are some use cases for this type of library. Here are some:
 
 * Compilation of libraries that make use of MPI on systems that do not have MPI or where it is hard to set up MPI. Using `FakeMPI` as a fallback will give you a sequential, but functional version of the library.
-* Testing scenarios: Being able to fallback to a purely sequential test case can help debugging more complex problems.
 * Building of statically linked binaries from libraries that rely on MPI e.g. for the purpose of publishing Python wheels for a sequential version of such library. Normally, this would be quite hard, because building static MPI applications "is not for the weak, and it is not recommended" (quoting [the OpenMPI FAQ](https://www.open-mpi.org/faq/?category=mpi-apps#static-mpi-apps)).
+
+There are also plenty of use cases where you should *not* use this library and instead use a regular MPI implementation and run your executables sequentially.
 
 ## How to use it
 
