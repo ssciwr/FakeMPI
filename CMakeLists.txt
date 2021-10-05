@@ -9,7 +9,7 @@ project(
 include(GNUInstallDirs)
 
 # Add the library
-add_library(MPI_C lib/mpi.c)
+add_library(MPI_C lib/unimpi.c lib/experimental_unimpi.c)
 target_include_directories(
   MPI_C PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/>
                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
