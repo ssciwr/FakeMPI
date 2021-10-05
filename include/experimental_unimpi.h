@@ -10,8 +10,6 @@ extern "C"
 
 #define MPI_VERSION 3
 
-#define MPI_C_BOOL _Bool
-
 #define MPI_MAX_INFO_KEY 2056
 #define MPI_MAX_INFO_VAL 2056
 
@@ -20,6 +18,9 @@ extern "C"
     MPI_Comm_errhandler_function* comm_errhandler_fn,
     MPI_Errhandler* errhandler);
   int MPI_Comm_set_errhandler(MPI_Comm comm, MPI_Errhandler errhandler);
+
+  typedef int MPI_Message;
+  typedef int MPI_Count;
 
 #if defined(__cplusplus)
 }

@@ -163,6 +163,11 @@ extern "C"
 #define MPI_DATATYPE_NULL 0
 #define MPI_PACKED 0
 
+/* Additions start */
+// This one is a toughie - I still have to find out how to do it exactly
+#define MPI_C_BOOL 1
+  /* Additions stop  */
+
 #define MPI_FLOAT (1 << 20 | 1 << 8 | (int)sizeof(float))
 #define MPI_DOUBLE (1 << 20 | 1 << 8 | (int)sizeof(double))
 #define MPI_LONG_DOUBLE (1 << 20 | 1 << 8 | (int)sizeof(long double))
@@ -909,13 +914,18 @@ extern "C"
   /* MPI-IO additions */
 
   typedef int MPI_File;
-  //#define MPI_FILE_NULL 0
+#define MPI_FILE_NULL 0
 
   typedef int MPI_Offset;
 
 #define MPI_MODE_RDONLY 0
 #define MPI_MODE_WRONLY 0
 #define MPI_MODE_CREATE 0
+
+/* Additions start */
+#define MPI_MODE_RDWR 0
+#define MPI_MODE_EXCL 0
+  /* Additions stop  */
 
 #define MPI_File_open(comm, filename, amode, info, mpi_fh)                     \
   (MPIUNI_ARG(comm),                                                           \
