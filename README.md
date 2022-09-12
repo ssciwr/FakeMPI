@@ -65,5 +65,5 @@ Several implementations of this idea are floating around. In fact, many HPC libr
 
 ## Acknowledgments
 
-The actual implementation is taken from [LAMMPS](https://www.lammps.org/) which uses this functionality internally.
-LAMMPS is copyrighted by Sandia Corporation and published under the GPLv2. For more information, see [our Copyright notice](COPYING.md)
+The actual implementation is taken from [Petsc](https://gitlab.com/petsc/petsc) which uses this functionality internally.
+Petsc is copyrighted by UChicago Argonne, LLC and the PETSc Development Team and published under the BSD-2 license. For more information, see [our Copyright notice](COPYING.md)
