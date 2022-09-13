@@ -1,8 +1,9 @@
 # FakeMPI - A sequential MPI stub
 
-*I am still experimenting with this - try at your own risk*
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ssciwr/FakeMPI/CI)](https://github.com/ssciwr/FakeMPI/actions?query=workflow%3ACI)
 
-`FakeMPI` is a sequential MPI stub. It implements the MPI C interface with an implementation that is limited to work on one rank.
+`FakeMPI` is a sequential MPI stub. It implements the MPI C interface with an implementation that is limited to work on one rank. It is not a full implementation of the MPI standard - try and use at your own risk.
 
 ## What is this good for?
 
@@ -11,7 +12,7 @@ There are some use cases for this type of library. Here are some:
 * Compilation of libraries that make use of MPI on systems that do not have MPI or where it is hard to set up MPI. Using `FakeMPI` as a fallback will give you a sequential, but functional version of the library.
 * Building of statically linked binaries from libraries that rely on MPI e.g. for the purpose of publishing Python wheels for a sequential version of such library. Normally, this would be quite hard, because building static MPI applications "is not for the weak, and it is not recommended" (quoting [the OpenMPI FAQ](https://www.open-mpi.org/faq/?category=mpi-apps#static-mpi-apps)).
 
-There are also plenty of use cases where you should *not* use this library and instead use a regular MPI implementation and run your executables sequentially.
+**Note**: There are also plenty of use cases where you should *not* use this library and instead use a regular MPI implementation and run your executables sequentially.
 
 ## How to use it
 
@@ -30,14 +31,17 @@ make install
 Then, in an unrelated CMake build of a library that uses MPI, you can do:
 
 ```
-cmake -DCMAKE_PREFIX_PATH=<path/to/fakempi/install> -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON <path/to/mylib/src>
+cmake \
+  -DCMAKE_PREFIX_PATH=<path/to/fakempi/install> \
+  -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON \
+  <path/to/mylib/src>
 ```
 
 Please note that the `CMAKE_FIND_PACKAGE_PREFER_CONFIG` option was only introduced in CMake 3.15!
 It is necessary to have the `FakeMPI` installation take precedence over other MPI installations
-found by CMake's `FindMPI.cmake` script.
+found by CMake's `FindMPI.cmake` module (The module does not find `FakeMPI`).
 
-Within your libraries `CMakeLists.txt`, you can use it just like any other MPI implementation:
+Within your library's `CMakeLists.txt`, you can use it just like any other MPI implementation:
 
 ```
 find_package(MPI REQUIRED)
@@ -48,7 +52,7 @@ target_link_libraries(mytarget PUBLIC MPI::MPI_C)
 
 There are severe drawbacks and limitations to the approach:
 
-* **FakeMPI is not a fully standard conforming MPI implementation**. Instead, the scope of implemented features is defined by the needs of very specific applications.
+* **FakeMPI is not a fully standard conforming MPI implementation**. Instead, the scope of implemented features is defined by the needs of very specific applications that the contributors happened to work on.
 * If your library depends on other libraries that depend on MPI you need to compile these libraries with `FakeMPI` as well - potentially leading to *build from source creep*.
 * There is no performance guarantee whatsoever.
 * Globally installing `FakeMPI` might shadow your actual MPI for CMake - don't do it.
