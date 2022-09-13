@@ -99,6 +99,12 @@
 #include <stddef.h>
 
 #if defined(__cplusplus)
+#define FAKEMPI_EXTERN extern "C"
+#else
+#define FAKEMPI_EXTERN extern
+#endif
+
+#if defined(__cplusplus)
 extern "C"
 {
 #endif
@@ -112,7 +118,7 @@ extern "C"
    from generating warning messages about unused variables while compiling
    PETSc.
   */
-  void* MPIUNI_TMP;
+  FAKEMPI_EXTERN void* MPIUNI_TMP;
 #define MPIUNI_ARG(arg) (MPIUNI_TMP = (void*)(MPI_Aint)(arg))
 
 #define MPI_IDENT 0
