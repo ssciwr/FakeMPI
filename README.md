@@ -48,7 +48,7 @@ target_link_libraries(mytarget PUBLIC MPI::MPI_C)
 
 There are severe drawbacks and limitations to the approach:
 
-* **FakeMPI is not a fully standard conforming MPI implementation**. Instead, it implements the methods needed to run most applications.
+* **FakeMPI is not a fully standard conforming MPI implementation**. Instead, the scope of implemented features is defined by the needs of very specific applications.
 * If your library depends on other libraries that depend on MPI you need to compile these libraries with `FakeMPI` as well - potentially leading to *build from source creep*.
 * There is no performance guarantee whatsoever.
 * Globally installing `FakeMPI` might shadow your actual MPI for CMake - don't do it.
@@ -56,7 +56,7 @@ There are severe drawbacks and limitations to the approach:
 
 ## Features compared to other such implementations
 
-Several implementations of this idea are floating around. In fact, many HPC libraries ship similar functionality to provide sequential fallbacks (LAMMPS - we borrowed their implementation, PetSc, Dune etc.). This is what is distinct for this distribution:
+Several implementations of this idea are floating around. In fact, many HPC libraries ship similar functionality to provide sequential fallbacks (PetSc - we borrowed their implementation, LAMMPS, Dune etc.). This is what is distinct for this distribution:
 
 * Stand-alone distribution that is independent of a library. This allows separation of concern in the sense that a user can compile a library with `FakeMPI` without the library being aware of the fact.
 * CMake integration: CMake-based libraries (assuming they follow certain CMake conventions) will pick up `FakeMPI` without changes to the code base.
@@ -65,5 +65,5 @@ Several implementations of this idea are floating around. In fact, many HPC libr
 
 ## Acknowledgments
 
-The actual implementation is taken from [Petsc](https://gitlab.com/petsc/petsc) which uses this functionality internally.
+The actual implementation is taken from [PetSc](https://gitlab.com/petsc/petsc) which uses this functionality internally.
 Petsc is copyrighted by UChicago Argonne, LLC and the PETSc Development Team and published under the BSD-2 license. For more information, see [our Copyright notice](COPYING.md)
