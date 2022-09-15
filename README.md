@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ssciwr/FakeMPI/CI)](https://github.com/ssciwr/FakeMPI/actions?query=workflow%3ACI)
 
-`FakeMPI` is a sequential MPI stub. It implements the MPI C interface with an implementation that is limited to work on one rank. It is not a full implementation of the MPI standard - try and use at your own risk.
+`FakeMPI` is a sequential MPI stub heavily based on [PetSc's UniMPI](https://gitlab.com/petsc/petsc/-/blob/main/include/petsc/mpiuni/mpi.h) (We copied their sources, removed PetSc all the PetSc-specificness and added a CMake build system that allows to easily use FakeMPI with any project). It implements the MPI C interface with an implementation that is limited to work on one rank. It is not a full implementation of the MPI standard - try and use at your own risk.
 
 ## What is this good for?
 
