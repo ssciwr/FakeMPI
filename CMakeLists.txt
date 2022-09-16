@@ -13,6 +13,7 @@ add_library(MPI_C lib/unimpi.c lib/experimental_unimpi.c)
 target_include_directories(
   MPI_C PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/>
                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_definitions(MPI_C PUBLIC MPI_IS_FAKEMPI=1)
 set_property(TARGET MPI_C PROPERTY C_STANDARD 99)
 
 # Testing stuff
