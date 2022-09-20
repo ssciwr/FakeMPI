@@ -13,15 +13,15 @@ mkdir ${CMAKE_CURRENT_BINARY_DIR}/build-project
 
 # Build and install FakeMPI
 cd ${CMAKE_CURRENT_BINARY_DIR}/build-mpi
-cmake -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/install-mpi ${CMAKE_SOURCE_DIR}
-cmake --build .
-cmake --build . --target install
+cmake -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/install-mpi -DCMAKE_BUILD_TYPE=Release ${CMAKE_SOURCE_DIR}
+cmake --build . --config Release
+cmake --build . --config Release --target install
 
 # Build the helloworld example project
 cd ${CMAKE_CURRENT_BINARY_DIR}/build-project
 cmake -DCMAKE_PREFIX_PATH=${CMAKE_CURRENT_BINARY_DIR}/install-mpi -DCMAKE_FIND_DEBUG_MODE=ON -DCMAKE_FIND_PACKAGE_PREFER_CONFIG=ON ${CMAKE_CURRENT_SOURCE_DIR}/project
-cmake --build .
+cmake --build . --config Release
 
 # Run and make sure that our processor name is "localhost", which is
 # what FakeMPI returns regardless of the actual host's name
-./helloworld | grep localhost
+ctest -C Release

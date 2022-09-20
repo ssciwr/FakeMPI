@@ -9,3 +9,7 @@ find_package(
 # Add C Hello World executable
 add_executable(helloworld helloworld.c)
 target_link_libraries(helloworld PUBLIC MPI::MPI_C)
+
+# Define test
+include(CTest)
+add_test(NAME helloworld COMMAND $<TARGET_FILE:helloworld> | grep localhost)
