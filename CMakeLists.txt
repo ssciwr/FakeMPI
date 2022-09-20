@@ -5,6 +5,14 @@ project(
   VERSION 3.1.0
   LANGUAGES C)
 
+# Maybe about our partial support for multi config generators (MSVC!)
+get_cmake_property(MULTI GENERATOR_IS_MULTI_CONFIG)
+if(MULTI)
+  message(WARNING "FakeMPI does not properly support multi-config generators."
+                  "Only Release builds will be configured.")
+  set(CMAKE_CONFIGURATION_TYPES "Release")
+endif()
+
 # Initialize some default paths
 include(GNUInstallDirs)
 
