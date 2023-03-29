@@ -10,6 +10,7 @@ extern "C"
 
 #define MPI_VERSION 3
 
+#define MPI_ERR_ARG 13
 #define MPI_MAX_INFO_KEY 2056
 #define MPI_MAX_INFO_VAL 2056
 
